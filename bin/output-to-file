@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+require 'output-to-file'
+require 'optparse'
+
+options = "Done!"
+OptionParser.new do |opts|
+
+  opts.on("-v", "--version") do
+    puts "output-to-file version #{Mygem::VERSION}"
+    exit
+  end
+  
+  opts.on("--hey") do
+    puts "I love you baby!"
+    exit
+  end
+  
+  opts.on("-n", "--new") do
+	OutputToFile.perform
+	exit
+  end
+  
+  opts.on("-h", "--help") do
+	puts <<HELP
+	
+Usage:
+	output-to-file [option]
+		
+Options:
+	-n, --new			Generate template of the script
+	-v, --version		Show version
+	-h, --help		Show this message
+		
+Examples:
+	output-to-file -v
+	output-to-file new
+	output-to-file -h
+HELP
+	
+	exit
+  end
+  
+end.parse!
+
+# p options
+# p ARGV
